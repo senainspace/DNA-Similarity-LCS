@@ -50,8 +50,10 @@ public class Main {
 
         for (int i = 0; i < subsequences.size(); i++) {
             String seq = subsequences.get(i);
+            boolean isValid = SubsequenceFinder.isCommonSubsequence(seq, humanDNA, chimpDNA);
             System.out.printf("[%d] %s%n", i + 1, labels[i]);
             System.out.printf("    Length : %,d%n", seq.length());
+            System.out.printf("    Valid  : %s%n", isValid ? "YES" : "NO (ERROR!)");
             System.out.println("    Sequence:");
             System.out.println(seq);
             System.out.println();
