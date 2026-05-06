@@ -53,8 +53,6 @@ public class LCS {
         return lcsCache;
     }
 
-    // Same DP table, opposite tie-breaking: prefer j-- instead of i-- on equal values.
-    // Produces a different valid LCS when multiple optimal paths exist.
     public String reconstructAlt() {
         StringBuilder sb = new StringBuilder();
         int i = s1.length();

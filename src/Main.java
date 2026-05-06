@@ -3,7 +3,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        // ── 1. Read DNA sequences ──────────────────────────────────────────────
+        // Read DNA sequences 
         String humanDNA = DNAReader.read("data/homosapiens.txt");
         String chimpDNA  = DNAReader.read("data/chimpanzee.txt");
 
@@ -13,7 +13,7 @@ public class Main {
         System.out.printf("Chimpanzee DNA length: %,d characters%n", chimpDNA.length());
         System.out.println();
 
-        // ── 2. Build DP table & compute LCS ───────────────────────────────────
+        // Build DP table & compute LCS 
         System.out.println("Building LCS DP table... (this may take a few seconds)");
         long startTime = System.currentTimeMillis();
 
@@ -22,13 +22,13 @@ public class Main {
         long buildMs = System.currentTimeMillis() - startTime;
         System.out.printf("DP table built in %d ms%n%n", buildMs);
 
-        // ── 3. LCS length ──────────────────────────────────────────────────────
+        // LCS length
         int lcsLen = lcs.getLCSLength();
         System.out.printf("LCS Length: %,d%n", lcsLen);
         double similarity = (double) lcsLen / Math.min(humanDNA.length(), chimpDNA.length()) * 100;
         System.out.printf("Similarity (LCS / shorter sequence): %.2f%%%n%n", similarity);
 
-        // ── 4. Reconstruct LCS via backtracking ────────────────────────────────
+        // Backtracking 
         System.out.println("Reconstructing LCS via backtracking...");
         long recStart = System.currentTimeMillis();
         String lcsString = lcs.reconstruct();
@@ -40,8 +40,8 @@ public class Main {
         System.out.println(lcsString);
         System.out.println();
 
-        // ── 5. Five different common subsequences ──────────────────────────────
-        System.out.println("=== 5+ Different Common Subsequences ===");
+
+        System.out.println("=== 5 Different Common Subsequences ===");
         System.out.println();
 
         SubsequenceFinder finder = new SubsequenceFinder(lcs);
@@ -52,7 +52,8 @@ public class Main {
             String seq = subsequences.get(i);
             System.out.printf("[%d] %s%n", i + 1, labels[i]);
             System.out.printf("    Length : %,d%n", seq.length());
-            System.out.printf("    Preview: %s%n", seq.substring(0, Math.min(80, seq.length())));
+            System.out.println("    Sequence:");
+            System.out.println(seq);
             System.out.println();
         }
 
